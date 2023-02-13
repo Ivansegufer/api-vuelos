@@ -1,0 +1,388 @@
+{
+	"info": {
+		"_postman_id": "6858102d-a36e-47c1-ac20-25aaf225aed9",
+		"name": "API-VUELOS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21910525"
+	},
+	"item": [
+		{
+			"name": "AUTH",
+			"item": [
+				{
+					"name": "LOGIN",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = JSON.parse(responseBody);\r",
+									"\r",
+									"if (response?.token) {\r",
+									"    pm.environment.set(\"TOKEN\", response.token);\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"usuario\": \"iguzman\",\r\n    \"password\": \"1205979907\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}/auth/login",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "REGISTER",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Sebastián Guzmán Fernández\",\r\n    \"usuario\": \"iguzman\",\r\n    \"email\": \"ivangf07@uniandes.edu.ec\",\r\n    \"password\": \"1205979907\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}/auth/register",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "PASAJERO",
+			"item": [
+				{
+					"name": "OBTENER TODOS LOS PASAJEROS",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}/pasajero",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"pasajero"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CREAR PASAJERO",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Rosa Fernández\",\r\n    \"identificacion\": \"1203587744\",\r\n    \"numero_pasaporte\": \"ZAB000254\",\r\n    \"email\": \"rosafer@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}/pasajero",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"pasajero"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ELIMINAR PASAJERO",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}/pasajero/ZAB000254",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"pasajero",
+								"ZAB000254"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "OBTENER PASAJERO POR PASAPORTE",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}/pasajero/byPasaporte/ZAB000254",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"pasajero",
+								"byPasaporte",
+								"ZAB000254"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "OBTENER PASAJERO POR IDENTIFICACION",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}/pasajero/byIdentificacion/1203587744",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"pasajero",
+								"byIdentificacion",
+								"1203587744"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "VUELO",
+			"item": [
+				{
+					"name": "OBTENER TODOS LOS VUELOS",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{HOST}}/vuelo",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"vuelo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CREAR VUELO",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Vuelo 32 Argentina - Ecuador\",\r\n    \"numero\": 32,\r\n    \"destino\": \"Ecuador, Quito\",\r\n    \"horas_vuelo\": 4,\r\n    \"fecha_salida\": \"2023-02-16 12:03:30\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}/vuelo",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"vuelo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ELIMINAR VUELO",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}/vuelo/32",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"vuelo",
+								"32"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "OBTENER VUELO POR NUMERO",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{HOST}}/vuelo/byNumero/32",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"vuelo",
+								"byNumero",
+								"32"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
