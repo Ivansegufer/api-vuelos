@@ -46,7 +46,7 @@ export class PasajeroService {
 
     if (pasajeroFound) throw new BadRequestException('El pasajero ya existe');
 
-    this.pasajeroModel.create({
+    await this.pasajeroModel.create({
       email: pasajeroToCreate.email,
       identificacion: pasajeroToCreate.identificacion,
       numero_pasaporte: pasajeroToCreate.numero_pasaporte,
